@@ -292,9 +292,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    }
 
-	    disabled = day.isBefore(minDate) || day.isAfter(maxDate) || excludeDates.some(function (xDay) {
-	      return day.sameDay(xDay);
-	    });
+	    disabled = day.isBefore(minDate) || day.isAfter(maxDate);
+	    if (excludeDates.length > 0) {
+	      disabled = disabled || excludeDates.some(function (xDay) {
+	        return day.sameDay(xDay);
+	      });
+	    }
 
 	    return React.createElement(Day, {
 	      key: key,
