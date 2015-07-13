@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("moment"), require("lodash"), require("react-onclickoutside"), require("tether"));
+		module.exports = factory(require("react"), require("moment"), require("react-onclickoutside"), require("tether"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "moment", "lodash", "react-onclickoutside", "tether"], factory);
+		define(["react", "moment", "react-onclickoutside", "tether"], factory);
 	else if(typeof exports === 'object')
-		exports["DatePicker"] = factory(require("react"), require("moment"), require("lodash"), require("react-onclickoutside"), require("tether"));
+		exports["DatePicker"] = factory(require("react"), require("moment"), require("react-onclickoutside"), require("tether"));
 	else
-		root["DatePicker"] = factory(root["React"], root["moment"], root["_"], root["OnClickOutside"], root["Tether"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_9__) {
+		root["DatePicker"] = factory(root["React"], root["moment"], root["OnClickOutside"], root["Tether"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_8__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -57,10 +57,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var Popover = __webpack_require__(8);
+	var Popover = __webpack_require__(7);
 	var DateUtil = __webpack_require__(5);
 	var Calendar = __webpack_require__(1);
-	var DateInput = __webpack_require__(10);
+	var DateInput = __webpack_require__(9);
 	var moment = __webpack_require__(4);
 
 	var DatePicker = React.createClass({
@@ -197,12 +197,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(2);
 	var Day = __webpack_require__(3);
 	var DateUtil = __webpack_require__(5);
-	var _ = __webpack_require__(6);
 
 	var Calendar = React.createClass({
 	  displayName: 'Calendar',
 
-	  mixins: [__webpack_require__(7)],
+	  mixins: [__webpack_require__(6)],
 
 	  handleClickOutside: function handleClickOutside() {
 	    this.props.hideCalendar();
@@ -288,12 +287,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        disabled;
 
 	    if (this.props.excludeDates && Array.isArray(this.props.excludeDates)) {
-	      excludeDates = _(this.props.excludeDates).map(function (date) {
+	      excludeDates = this.props.excludeDates.map(function (date) {
 	        return new DateUtil(date).safeClone();
 	      });
 	    }
 
-	    disabled = day.isBefore(minDate) || day.isAfter(maxDate) || _(excludeDates).some(function (xDay) {
+	    disabled = day.isBefore(minDate) || day.isAfter(maxDate) || excludeDates.some(function (xDay) {
 	      return day.sameDay(xDay);
 	    });
 
@@ -356,7 +355,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
@@ -408,13 +407,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
 
 /***/ },
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
@@ -512,18 +511,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
 
 /***/ },
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
-
-/***/ },
-/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -582,7 +575,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (this._tether != null) {
 	      this._tether.setOptions(this._tetherOptions());
 	    } else if (window && document) {
-	      var Tether = __webpack_require__(9);
+	      var Tether = __webpack_require__(8);
 	      this._tether = new Tether(this._tetherOptions());
 	    }
 	  },
@@ -603,13 +596,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Popover;
 
 /***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
+/* 8 */
+/***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

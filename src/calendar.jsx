@@ -1,7 +1,6 @@
 var React = require('react');
 var Day = require('./day');
 var DateUtil = require('./util/date');
-var _ = require('lodash');
 
 var Calendar = React.createClass({
   mixins: [require('react-onclickoutside')],
@@ -88,13 +87,13 @@ var Calendar = React.createClass({
         disabled;
 
     if(this.props.excludeDates && Array.isArray(this.props.excludeDates)) {
-      excludeDates = _(this.props.excludeDates).map(function(date) {
+      excludeDates = this.props.excludeDates.map(function(date) {
         return new DateUtil(date).safeClone();
       });
     }
 
     disabled = day.isBefore(minDate) || day.isAfter(maxDate) ||
-      _(excludeDates).some(function(xDay) { return day.sameDay(xDay); });
+      excludeDates.some(function(xDay) { return day.sameDay(xDay); });
 
     return (
       <Day
